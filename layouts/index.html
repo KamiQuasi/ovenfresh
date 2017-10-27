@@ -3,9 +3,14 @@
 {{ .Content }}
 
 <div class="content">
+    <h2>Content</h2>
 {{ range first 10 .Data.Pages }}
     {{ .Render "summary"}}
 {{ end }}
+</div>
+<div class="tags">
+    <h2>Tags</h2>
+{{ partial "tags.html" .}}
 </div>
 
 {{ partial "footer.html" . }}
