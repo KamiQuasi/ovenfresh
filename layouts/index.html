@@ -1,16 +1,30 @@
 {{ partial "header.html" . }}
 
-{{ .Content }}
+{{ partial "chrome.html" . }}
 
 <div class="content">
-    <h2>Content</h2>
-{{ range first 10 .Data.Pages }}
-    {{ .Render "summary"}}
-{{ end }}
+{{ .Content }}
+
+{{ with .Data.Pages }}
+<div class="content">
+    <h2>Latest Content</h2>
+    {{ range first 10 .Data.Pages }}
+        {{ .Render "summary"}}
+    {{ end }}
 </div>
+{{ end }}
+
+</div>
+<div class="details"></div>
+<nav>
+
+{{ with .Site.Taxonomies.tags }}
 <div class="tags">
     <h2>Tags</h2>
 {{ partial "tags.html" .}}
 </div>
+{{ end }}
+
+</nav>
 
 {{ partial "footer.html" . }}
