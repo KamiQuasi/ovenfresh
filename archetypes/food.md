@@ -1,4 +1,7 @@
 +++
+title = "{{ replace .TranslationBaseName "-" " " | title }}"
+type = "food"
+date = {{ .Date }}
 slug = ""
 tags = []
 categories = []

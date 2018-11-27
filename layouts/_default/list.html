@@ -1,9 +1,15 @@
 {{ partial "header.html" . }}
 
-<section class="summary">
-{{ range .Data.Pages }}
-    {{ .Render "summary" }}
-{{ end }}
-</section>
+{{ partial "chrome.html" . }}
 
+<div class="content">
+    {{ partial "navigation.html" . }}
+    <section class="summary">
+        <h1>List</h1>
+        {{ range .Data.Pages }}
+            {{ .Render "summary" }}
+        {{ end }}
+    </section>
+    <div class="details"></div>
+</div>
 {{ partial "footer.html" . }}

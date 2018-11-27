@@ -1,9 +1,13 @@
 {{ partial "header.html" . }}
 
-{{ .Content }}
+{{ partial "chrome.html" . }}
 
-{{ range .Params.tags }}
-    <li><a href="{{ "/tags/" | relLangURL }}{{ . | urlize }}">{{ . }}</a></li>
-{{ end }}
+<div class="content">
+    {{ partial "navigation.html" . }}
+    <section>
+        {{ .Content }}
+    </section>
+    <div class="details"></div>
+</div>
 
 {{ partial "footer.html" . }}

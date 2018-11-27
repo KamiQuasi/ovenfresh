@@ -1,0 +1,19 @@
+{{ partial "header.html" . }}
+
+{{ partial "chrome.html" . }}
+<div class="content">
+{{ .Content }}
+</div>
+<div class="detail">
+    {{ with .Params.theme }}
+    <strong>Themes</strong>
+    <ul id="themes">
+      {{ range . }}
+        <li> <a href="{{ "themes/" | absURL }}{{ . | urlize }}">{{ . }}</a> </li>
+      {{ end }}
+    </ul>
+    {{ end }}
+</div>
+
+{{ partial "navigation.html" . }}
+{{ partial "footer.html" . }}
