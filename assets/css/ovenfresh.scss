@@ -1,5 +1,16 @@
 @import url('https://fonts.googleapis.com/css?family=Croissant+One|Overpass');
 
+@import 'breaks';
+@import 'grid';
+
+/* {{ $banner := resources.Get "/img/banner.jpg" }} */
+$banner: url({{ $banner.Permalink }});
+
+$color-1: #14bc0b;
+$color-2: #2f70ee;
+$color-3: #ff9301;
+$color-4: #914299;
+
 html {
     --oven-green: #14bc0b;
     --oven-blue: #2f70ee;
@@ -17,32 +28,34 @@ body {
 }
 
 header {
+    // display: flex;
+    // flex: 0 0 auto;
     position: relative;
-    background-image: url(/img/banner.jpg) ;
+    background-color: $color-1;
+    // background-image: $banner;
     background-size: cover;
     background-position-y: 25%;
-    flex: 0 0 150px;
-}
-
-header .heading {
-    background-color: rgba(255,255,255,.75);
-    display:flex;
-    flex-direction: row;
-    align-items: center;
+    text-align: center;
 }
 
 header .logo {
-    flex: 0 0 200px;
-    text-align: center;
-    max-height: 150px;
+    // flex: 1 1 auto;
+    max-height: 80px;
+    margin-right: 1em;
+    @include breakpt(xs) {
+        // flex: 0 1 auto;
+    }
 }
 
 header h1 {
-    flex: 1 0 auto;
-    font-size: 100px;
-    line-height: 100px;
-    color: #914299;
+    // flex: 1 1 auto;
+    font-size: 40px;
+    line-height: 80px;
+    color: #FFF;
     margin: 0;
+    @include breakpt(xs) {
+        // flex: 1 0 auto;
+    }
 }
 
 h1 {
@@ -50,15 +63,15 @@ h1 {
 }
 
 .content {
-    flex: 1 1 auto;
+    @include grid-base;
+    flex: 1 0 auto;
     position: relative;
-    display: flex;
-    flex-direction: row;
 }
 
 nav {
-    flex: 0 0 200px;
+    @include grid-span-1;
     padding-left: 1em;
+    background: $color-3;
 }
 
 nav ul {
@@ -71,8 +84,12 @@ nav ul ul {
 }
 
 .content section {
-    flex: 1 1 auto;
-    padding: 0 1em;
+    @include sub-grid-base;
+    @include grid-span-middle;
+}
+
+.content section h1 {
+    @include sub-grid-full;
 }
 
 .content section img {
@@ -82,7 +99,8 @@ nav ul ul {
 }
 
 .details {
-    flex: 0 0 200px;
+    @include grid-span-1;
+    background: $color-2;
 }
 
 .detail strong { font-size: 1.2em; font-weight: 800; text-align: center; border-bottom: 1px solid black; margin-left: 1em;}
@@ -92,69 +110,5 @@ nav ul ul {
 footer {
     flex: 0 0 auto;
     text-align: center;
-    padding: 0 1em;
 }
 
-@media only screen and (max-width : 1260px) {
-    header h1 {
-        font-size: 100px;
-    }
-}
-
-@media only screen and (max-width : 1075px) {
-    header h1 {
-        font-size: 80px;
-    }
-}
-
-@media only screen and (max-width : 960px) {
-    body {
-        grid-template-columns: 100%;
-        grid-template-rows: 300px
-                        auto 
-                        1fr 
-                        auto;
-        grid-template-areas: "head"
-                             "nav"
-                             "content"
-                             "detail"
-                             "footer";
-    }
-
-    header .heading {
-        flex-direction: column;
-    }
-
-    header h1 {
-        font-size: 60px;
-    }
-
-    nav { background-color: #14bc0b; text-align: center; font-size: 1.2em; text-transform: uppercase; }
-    nav a { color: #2f70ee; }
-    nav ul li { display: inline; margin-right: 2em;}
-
-    .content {
-        margin-right: 1em;
-    }
-
-    .content h1 {
-
-    }
-}
-
-@media only screen and (max-width : 550px) {
-    body {
-        grid-template-rows: 200px auto 1fr auto 100px;
-    }
-    header .heading {
-        flex-direction: row;
-        background-color: rgba(255,255,255,.8);
-    }
-    header .logo {
-        flex: 0 1 auto;
-    }
-    header h1 {
-        font-size: 50px;
-        flex: 0 1 auto;
-    }
-}

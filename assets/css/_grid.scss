@@ -1,0 +1,102 @@
+@mixin grid-base {
+    @supports (display: grid) {
+        display: grid;
+        grid-template-columns: [content-start] 1fr [content-end];
+        grid-auto-flow: row;
+
+        @include breakpt(xs) {
+            grid-template-columns: repeat(4, [content-start] 1fr) [content-end];
+            grid-gap: 10px; 
+        }
+        @include breakpt(s) {
+            grid-template-columns: repeat(4, [content-start] 1fr) [content-end];
+            grid-gap: 10px;
+        }
+        @include breakpt(m) {
+            grid-template-columns: repeat(12, [content-start] 1fr) [content-end];
+            grid-gap: 15px; 
+        }
+        @include breakpt(l) {
+            grid-template-columns: repeat(16, [content-start] 1fr) [content-end];
+            grid-gap: 20px; 
+        }
+        @include breakpt(xl) {
+            grid-gap: 30px; 
+        }
+    }
+}
+
+@mixin grid-center {
+    @include grid-base; 
+    max-width: $size-xs;
+
+    @include breakpt(xs) {
+        margin: 0 auto;
+        min-width: $size-xs;
+        max-width: auto;
+    }
+    @include breakpt(s) {
+        min-width: $size-s;
+        max-width: auto;
+    }
+    @include breakpt(m) {
+        min-width: $size-m;
+        max-width: auto;
+    }
+    @include breakpt(l) {
+        min-width: $size-l;
+        max-width: auto;
+    }
+    @include breakpt(xl) {
+        min-width: auto;
+        max-width: $size-xl;
+    }
+}
+
+
+@mixin grid-span-middle {
+    grid-column: span 1;
+    @include breakpt(xs) {
+        grid-column: 2 / span 2 ;
+    }
+    @include breakpt(m) {
+        grid-column: 3 / span 8;
+    }
+    @include breakpt(l) {
+        grid-column: 4 / span 10;
+    }
+}
+
+@mixin grid-span-full {
+    grid-column-end: [content-end];
+}
+
+@mixin sub-grid-base {
+    @supports (display: grid) {
+        display: grid;
+        grid-template-columns: [content-start] 1fr [content-end];
+        grid-auto-flow: column;
+        grid-gap: 15px;
+        grid-template-columns: repeat(4, [content-start] 1fr) [content-end];
+    }
+}
+
+@mixin sub-grid-center {
+    @include sub-grid-base;
+    width: 1fr;
+    margin: 0 auto;    
+}
+
+@mixin sub-grid-full {
+    grid-column: content-start / content-end;
+}
+@mixin grid-span-1 {
+    grid-column: span 1;
+
+    @include breakpt(m) {
+        grid-column: span 2;
+    }
+    @include breakpt(l) {
+        grid-column: span 3;
+    }
+}

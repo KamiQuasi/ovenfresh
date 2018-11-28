@@ -1,0 +1,27 @@
+$size-xl: 2000px;
+$size-l: 1600px;
+$size-m: 1200px;
+$size-s: 1000px;
+$size-xs: 700px;
+
+@mixin breakpt($size) {
+    @if $size == xs {
+        @media (min-width: $size-xs) { @content };
+    }
+    @else if $size == s {
+        @media (min-width: $size-s) { @content };
+    }
+    @else if $size == m {
+        @media (min-width: $size-m) { @content };
+    }
+    @else if $size == l {
+        @media (min-width: $size-l) { @content };
+    }
+    @else if $size == xl {
+        @media (min-width: $size-xl) { @content };
+    }
+    @else {
+        @media (max-width: $size-xs) { @content };
+    }
+    
+}
