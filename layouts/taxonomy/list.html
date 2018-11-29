@@ -1,9 +1,17 @@
 {{ partial "header.html" . }}
-<h1>List</h1>
-<section class="summary">
+
+{{ partial "chrome.html" . }}
+
+<div class="content">
+        <nav></nav>
+        <section>
+<h1>{{ .Title }}</h1>
+<ul class="summary">
 {{ range .Data.Pages }}
-    {{ .Render "summary" }}
+    <li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
 {{ end }}
+</ul>
 </section>
+</div>  
 
 {{ partial "footer.html" . }}

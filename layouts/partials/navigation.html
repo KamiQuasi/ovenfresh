@@ -1,24 +1,13 @@
 <nav>
     <ul>
-        {{ range $.Site.Pages.ByParam "rank" }}
-            {{ if in .Params.categories "page" }}
+        {{ range .Site.Taxonomies.categories.page }}
             <li><a href="{{ .Permalink }}">{{ .Title }}</a></li>
-            {{ end }}
         {{ end }}
-        <li>Catalog
+        <li class="catalog"><span>Catalog</span><a href="/categories/catalog/">Catalog</a>
             <ul>
-            {{ range $.Site.Pages.ByParam "rank" }}
-                {{ if in .Params.categories "catalog" }}
+            {{ range .Site.Taxonomies.categories.catalog }}
                 <li><a href="{{ .Permalink }}">{{ .Title }}</a></li>
-                {{ end }}
             {{ end }}
-            </ul>
-        </li>
-        <li><em>Coming soon</em>
-            <ul>
-                <li>Croissants</li>
-                <li>Breads</li>
-                <li>More...</li>
             </ul>
         </li>
     </ul>
