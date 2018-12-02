@@ -1,0 +1,15 @@
+# theme.toml template for a Hugo theme
+# See https://github.com/spf13/hugoThemes#themetoml for an example
+
+name = "bullseyebaking"
+license = "MIT"
+licenselink = "https://github.com/KamiQuasi/bullseyebaking/blob/master/LICENSE.md"
+description = "A Hugo template for a small baking business."
+homepage = "http://bullseyebakingnc.com/"
+tags = ["baker", "instagram", "small-business", "fresh"]
+features = []
+min_version = "0.21"
+
+[author]
+  name = "Luke Dary"
+  homepage = "https://github.com/KamiQuasi"
