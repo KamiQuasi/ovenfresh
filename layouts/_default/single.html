@@ -3,7 +3,20 @@
   <h1 id="title">{{ .Title }}</h1>
   <div>
         <article id="content">
-           {{ .Content }}
+            {{ with .Resources.ByType "image" }}
+            {{ range . }}
+              {{ $image := .Resize "300x q25" }}
+              <img alt="{{ $image.Title }}" src="{{ $image.RelPermalink }}">
+            {{ end }}
+          {{ end }} 
+          {{ with .Resources.ByType "page" }}
+          <ul>
+            {{ range . }}
+              <li><a href="{{ .Permalink }}">{{ .Title }}</a></li>
+            {{ end }}
+          {{ end }} 
+          </ul>
+          {{ .Content }}
         </article>
   </div>
 </section>
@@ -23,7 +36,7 @@
     {{ with .Params.tags }}
     <ul id="tags">
       {{ range . }}
-        <li> <a href="{{ "tags" | absURL }}{{ . | urlize }}">{{ . }}</a> </li>
+        <li> <a href="{{ "tags" | absURL }}/{{ . | urlize }}">{{ . }}</a> </li>
       {{ end }}
     </ul>
     {{ end }}

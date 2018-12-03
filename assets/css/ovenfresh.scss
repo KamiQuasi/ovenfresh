@@ -1,0 +1,174 @@
+@import url('https://fonts.googleapis.com/css?family=Croissant+One|Overpass');
+
+@import 'breaks';
+
+/* {{ $banner := resources.Get "/img/banner.jpg" }} */
+$banner: url({{ $banner.Permalink }});
+
+$color-1: #14bc0b;
+$color-2: #2f70ee;
+$color-3: #ff9301;
+$color-4: #914299;
+
+html {
+    --oven-green: #14bc0b;
+    --oven-blue: #2f70ee;
+    --oven-orange: #ff9301;
+    --oven-purple: #914299;
+}
+
+body { 
+    font-size: 1.2em;
+    margin: 0;
+    font-family: 'Overpass', sans-serif;
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+header {
+    flex: 0 0 80px;
+    position: relative;
+    background-color: $color-1;
+    // background-image: $banner;
+    background-size: cover;
+    background-position-y: 25%;
+    text-align: center;
+}
+
+header .logo {
+    max-height: 60px;
+    position: relative;
+    top: 15px;
+    @include breakpt(xs) {
+
+    }
+}
+
+header h1 {
+    vertical-align: middle;
+    font-size: 40px;
+    line-height: 80px;
+    color: #FFF;
+    margin: 0;
+    & a { text-decoration: none; color: white;}
+    @include breakpt(xs) {
+    }
+}
+
+h1 {
+    font-family: 'Croissant One', cursive, sans-serif;
+    font-size: 1.5em;
+}
+h2 {
+    font-size: 1.2em;
+}
+
+.content {
+    flex: 1 0 auto;
+    position: relative;
+    padding-bottom: 2em;
+    display: flex;
+    flex-direction: column;
+    margin: 0 15px 2em 15px;
+    
+    @include breakpt(xs) {
+        flex-direction: row;
+        margin: 0 15px 0 0;
+    }
+}
+
+nav {
+    flex: 0 0 auto;
+    margin: 0;
+    position: relative;
+    @include breakpt(xs) {
+        flex: 0 0 200px;
+        margin: 0 1em;
+    }
+}
+
+nav ul {
+    list-style: none;
+    padding-left: 0;
+    display: inline;
+
+    & li {
+        float: left;
+        margin-right: 1em;
+        &.catalog {
+            &:hover ul {
+                display: block;
+            }
+            & span {
+                display: none;
+            }
+            & > a {
+                display: inline;
+            }
+        }
+
+        @include breakpt(xs) {
+            &.catalog span {
+                display: inline;
+            }
+            &.catalog > a {
+                display: none;
+            }
+        }
+    }
+
+    @include breakpt(xs) {
+        display: block;
+
+        & li {
+            float: none;
+        }
+    }
+}
+
+nav ul ul {
+    left: 0;
+    padding-left: 1em;    
+    display: none;
+    
+    & li {
+        // display: none;
+        float: none;
+    }
+
+    @include breakpt(xs) {
+        display: block;
+    }
+}
+
+.content section {
+    flex: 2 2 auto;
+}
+
+.content section img {
+    margin: 1em auto;
+    max-width: 80%;
+    display: block;
+
+    @include breakpt(xs) {
+        display: inline;
+        float: right;
+        max-width: 50%;
+        margin: 0 0 1em 1em;
+    }
+}
+
+.details {
+    flex: 0 1 auto;
+}
+
+.detail strong { font-size: 1.2em; font-weight: 800; text-align: center; border-bottom: 1px solid black; margin-left: 1em;}
+.detail ul { list-style: none; padding-left: 1em;}
+
+
+footer {
+    flex: 0 0 auto;
+    text-align: center;
+}
+
