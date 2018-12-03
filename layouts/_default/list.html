@@ -1,8 +1,16 @@
 {{ define "main" }}
+<section>
   <h1>{{ .Title }}</h1>
+  {{ with .Resources.ByType "image" }}
+    {{ range . }}
+      {{ $image := .Resize "300x" }}
+      <img alt="{{ $image.Title }}" src="{{ $image.RelPermalink }}">
+    {{ end }}
+  {{ end }} 
+  <ul>
   {{ range .Pages }}
-    <article>
       {{ .Render "li"}}
-    </article>
   {{ end }}
+</ul>
+</section>
 {{ end }}

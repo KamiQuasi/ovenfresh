@@ -3,6 +3,16 @@
   <head>
     <meta charset="utf-8">
     <title>{{ block "title" . }}{{ with .Title }} {{.}} | {{ else }} {{ end }} {{ .Site.Title }}{{ end }}</title>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-108865189-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-108865189-1');
+    </script>
+
     <link rel="apple-touch-icon" sizes="57x57" href="{{ "img/favicons/apple-icon-57x57.png" | absURL }}">
     <link rel="apple-touch-icon" sizes="60x60" href="{{ "img/favicons//apple-icon-60x60.png" | absURL }}">
     <link rel="apple-touch-icon" sizes="72x72" href="{{ "img/favicons//apple-icon-72x72.png" | absURL }}">
@@ -23,15 +33,38 @@
   </head>
   <body>
     <header>
-        {{ $logo := resources.Get "img/logo.svg" }}
-        <h1><a href="/"><img src="{{ $logo.Permalink }}" class="logo"> {{ .Site.Title }}</a></h1>
+        {{ $image := resources.Get "img/logo.svg"}}
+        <h1><a href="/"><img src="{{ $image.Permalink }}" class="logo"> {{ .Site.Title }}</a></h1>
     </header>
+    <main class="content">
+    {{ block "nav" . }}
+    <nav>
+        <ul>
+          {{ range .Site.Taxonomies.categories.page }}
+          <li><a href="{{ .Permalink }}">{{ .Title }}</a></li>
+          {{ end }}
+          <li class="catalog"><span>Catalog</span>
+            <ul>
+            {{ range .Site.Taxonomies.categories.catalog }}
+              <li><a href="{{ .Permalink }}">{{ .Title }}</a></li>
+            {{ end }}
+            </ul>
+          </li>
+        </ul>
+    </nav>
+    {{ end }}
     <!-- Code that all your templates share, like a header -->
     {{ block "main" . }}
       <!-- The part of the page that begins to differ between templates -->
     {{ end }}
+  </main>
+  <footer>
     {{ block "footer" . }}
+    &copy;{{ .Site.Title }} {{ now.Format "2006"}} | Email: <a href="mailto:cori@bullseyebakingnc.com">cori@bullseyebakingnc.com</a> | 
+<a href="https://www.facebook.com/bullseyebaking/">Facebook</a> direct message | 
+Call: <a href="tel:+19195896836">919-589-6836</a> | <a href="{{ ref . "/policies" }}">Policies</a>
     <!-- More shared code, perhaps a footer but that can be overridden if need be in  -->
     {{ end }}
+  </footer>
   </body>
 </html>

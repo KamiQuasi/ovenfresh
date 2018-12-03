@@ -34,6 +34,7 @@ header {
     background-size: cover;
     background-position-y: 25%;
     text-align: center;
+    border-bottom: 2px solid #0e8007;
 }
 
 header .logo {
@@ -56,9 +57,12 @@ header h1 {
     }
 }
 
+h1, h2, h3, h4, h5, h6, ul, p { margin-top: 0; }
+
 h1 {
     font-family: 'Croissant One', cursive, sans-serif;
     font-size: 1.5em;
+    text-align: center;
 }
 h2 {
     font-size: 1.2em;
@@ -67,10 +71,9 @@ h2 {
 .content {
     flex: 1 0 auto;
     position: relative;
-    padding-bottom: 2em;
     display: flex;
     flex-direction: column;
-    margin: 0 15px 2em 15px;
+    margin: 0 15px;
     
     @include breakpt(xs) {
         flex-direction: row;
@@ -80,34 +83,31 @@ h2 {
 
 nav {
     flex: 0 0 auto;
-    margin: 0;
+    margin: 0 0 1em 0;
     position: relative;
+    
     @include breakpt(xs) {
         flex: 0 0 200px;
         margin: 0 1em;
+        padding-bottom: 1em;
+        border-right: 2px solid #0e8007;
     }
 }
 
 nav ul {
     list-style: none;
+    margin: 0;
     padding-left: 0;
-    display: inline;
+    display: flex;
 
-    & li {
+    li {
         float: left;
         margin-right: 1em;
+        flex: 0 0 auto; 
         &.catalog {
-            &:hover ul {
-                display: block;
-            }
-            & span {
-                display: none;
-            }
-            & > a {
-                display: inline;
-            }
+            flex: 0 1 auto;
         }
-
+        
         @include breakpt(xs) {
             &.catalog span {
                 display: inline;
@@ -129,21 +129,22 @@ nav ul {
 
 nav ul ul {
     left: 0;
-    padding-left: 1em;    
-    display: none;
+    display: block;
+    padding-left: 0;
     
-    & li {
-        // display: none;
-        float: none;
+    li {
+        font-size: .85em;
     }
 
     @include breakpt(xs) {
-        display: block;
+        padding-left: 1em;    
     }
 }
 
 .content section {
     flex: 2 2 auto;
+    display: flex;
+    flex-direction: column;
 }
 
 .content section img {
@@ -159,6 +160,32 @@ nav ul ul {
     }
 }
 
+.content section article {
+    flex: 1 0 auto;
+    margin-bottom: 1em;
+}
+
+.content section  h1 {
+    margin-top: 0;
+}
+
+.content section aside {
+    flex: 0 1 auto;
+    font-size: .75em;
+    display: flex;
+    margin-bottom: 1em;
+
+    & a {
+        flex: 1 0 auto;
+
+        &.previous {
+            text-align: right;
+        }
+    }
+}    
+
+
+
 .details {
     flex: 0 1 auto;
 }
@@ -168,7 +195,9 @@ nav ul ul {
 
 
 footer {
+    font-size: .75em;
     flex: 0 0 auto;
     text-align: center;
+    border-top: 2px solid #0e8007;
 }
 
